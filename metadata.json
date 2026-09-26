@@ -1,0 +1,6 @@
+{
+  "name": "AETHER MOTORS - Official Homepage",
+  "description": "AETHER KINETIC MOTORS - 순수한 공학, 타협 없는 미학. 차세대 순수 전기 하이퍼카 라인업 및 기술 혁신.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
