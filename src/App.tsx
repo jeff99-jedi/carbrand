@@ -139,6 +139,15 @@ export default function App() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [lang, setLang] = useState<'KR' | 'EN'>('KR');
+  const [heroVideoSrc, setHeroVideoSrc] = useState<string>('/hero-video.mp4');
+
+  const handleVideoFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const url = URL.createObjectURL(file);
+      setHeroVideoSrc(url);
+    }
+  };
 
   // Form State
   const [formData, setFormData] = useState({
@@ -281,44 +290,43 @@ export default function App() {
         <div className="absolute -top-32 right-10 w-96 h-96 bg-cyan-600/10 blur-[120px] pointer-events-none"></div>
 
         {/* Truly 100% Full-Width Hero Cinematic Showcase */}
-        <div className="relative w-full overflow-hidden border-y border-white/15 bg-black/40 shadow-2xl group mb-12 min-h-[550px] sm:min-h-[650px] md:min-h-[750px] flex items-center justify-center">
-          <img 
-            alt="AETHER Hyperion GT Cinematic Exterior" 
-            className="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out block" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVsqGrcJmpDBr5aYtyYZXJ5luKISaAsxPU4l6xc4aHrU6CsBouaioUIYopws8mjr7sLtsY_VRXOaMLVkSYAjWbbYyxYF8JbIkIHnySnD-rvNQX8qSGWSFo6SDun8WXpGONDabQ0B6MMuysyZcs6ql99hxqcMkEGTJI4QyDn1BwnFDjb2QLd485x-EKoFFq-C4n4c59lVkFcZ1yFamPvU1KItISpYAbbSnZlxOChsiiy0-44J-V4ajD"
-            referrerPolicy="no-referrer"
-          />
+        <div 
+          className="relative w-full overflow-hidden border-y border-white/15 bg-black/40 shadow-2xl group mb-12 min-h-[550px] sm:min-h-[650px] md:min-h-[750px] flex items-center justify-center"
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e) => {
+            e.preventDefault();
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+              const file = e.dataTransfer.files[0];
+              if (file.type.startsWith('video/')) {
+                setHeroVideoSrc(URL.createObjectURL(file));
+              }
+            }
+          }}
+        >
+          <video 
+            key={heroVideoSrc}
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            poster="/hero-poster.jpg"
+            className="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out block pointer-events-none"
+          >
+            <source src={heroVideoSrc} type="video/mp4" />
+            <img 
+              alt="AETHER Cinematic Driving"
+              src="/hero-poster.jpg"
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </video>
           <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e10] via-black/40 to-black/60 pointer-events-none"></div>
           <div className="absolute inset-0 bg-black/30 pointer-events-none"></div>
 
-          <div className="absolute top-12 sm:top-16 md:top-20 inset-x-0 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center flex flex-col items-center pointer-events-auto">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white leading-tight mb-6 text-center select-none drop-shadow-2xl">
-              ENGINEERED<br />FOR THE <span className="text-[#00e5ff] text-glow">VOID</span>
+          <div className="absolute inset-0 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center flex items-center justify-center pointer-events-none">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white leading-tight text-center select-none drop-shadow-2xl">
+              DRIVE YOUR DREAM
             </h1>
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5">
-              <a 
-                className="px-7 py-3 bg-[#00e5ff] hover:bg-[#00c5dd] text-black font-extrabold text-xs tracking-widest uppercase transition-all duration-300 transform hover:-translate-y-0.5 cyan-glow" 
-                href="#lineup"
-              >
-                EXPLORE LINEUP
-              </a>
-              <a 
-                className="px-7 py-3 bg-black/60 hover:bg-black/90 border border-white/30 hover:border-[#00e5ff]/60 text-white font-bold text-xs tracking-widest uppercase backdrop-blur-md transition-all duration-300 transform hover:-translate-y-0.5" 
-                href="#testdrive"
-              >
-                BOOK A TEST DRIVE
-              </a>
-            </div>
-          </div>
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 absolute bottom-6 inset-x-0 flex items-center justify-between pointer-events-none z-20">
-            <div className="flex items-center gap-2 bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 text-xs font-mono text-gray-300">
-              <span className="w-2 h-2 rounded-full bg-[#00e5ff] animate-pulse"></span>
-              AERO PROFILE: HIGH DOWNFORCE ACTIVE
-            </div>
-            <span className="text-xs font-mono text-[#00e5ff] tracking-wider hidden sm:inline-block">
-              TELEMETRY SYSTEM: NOMINAL
-            </span>
           </div>
         </div>
 
