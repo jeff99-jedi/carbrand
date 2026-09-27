@@ -41,3 +41,101 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #00e5ff;
 }
+
+/* DRIVE YOUR DREAM Keyframe Animation (Looping sequence)
+   0s - 1.2s: 'DRIVE YO' enters from left (-100vw), 'UR DREAM' enters from right (+100vw)
+   1.2s - 2.5s: Meet in center and sparkle / flash glow
+   2.5s - 3.4s: Float upward (-150px) and fade out
+   3.4s - 4.5s: Brief pause before replaying
+*/
+@keyframes slideInLeftGlow {
+  0% {
+    transform: translateX(-120vw);
+    opacity: 0;
+    filter: blur(10px);
+  }
+  20% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  30% {
+    transform: translateX(0);
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+  }
+  40% {
+    transform: translateX(0);
+    text-shadow: 0 0 35px rgba(0, 229, 255, 1), 0 0 70px rgba(255, 255, 255, 0.9);
+    filter: brightness(1.6);
+  }
+  50% {
+    transform: translateX(0);
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.7);
+    filter: brightness(1.2);
+  }
+  60% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-160px);
+    opacity: 0;
+    filter: blur(8px);
+  }
+  100% {
+    transform: translateY(-160px);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInRightGlow {
+  0% {
+    transform: translateX(120vw);
+    opacity: 0;
+    filter: blur(10px);
+  }
+  20% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  30% {
+    transform: translateX(0);
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+  }
+  40% {
+    transform: translateX(0);
+    text-shadow: 0 0 35px rgba(0, 229, 255, 1), 0 0 70px rgba(255, 255, 255, 0.9);
+    filter: brightness(1.6);
+  }
+  50% {
+    transform: translateX(0);
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.7);
+    filter: brightness(1.2);
+  }
+  60% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-160px);
+    opacity: 0;
+    filter: blur(8px);
+  }
+  100% {
+    transform: translateY(-160px);
+    opacity: 0;
+  }
+}
+
+.anim-drive-yo {
+  animation: slideInLeftGlow 5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+.anim-ur-dream {
+  animation: slideInRightGlow 5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}

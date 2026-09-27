@@ -323,9 +323,10 @@ export default function App() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e10] via-black/40 to-black/60 pointer-events-none"></div>
           <div className="absolute inset-0 bg-black/30 pointer-events-none"></div>
 
-          <div className="absolute inset-0 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center flex items-center justify-center pointer-events-none">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white leading-tight text-center select-none drop-shadow-2xl">
-              DRIVE YOUR DREAM
+          <div className="absolute top-[20%] inset-x-0 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center flex items-center justify-center pointer-events-none overflow-hidden">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white leading-tight text-center select-none drop-shadow-2xl flex flex-wrap items-center justify-center gap-x-4">
+              <span className="anim-drive-yo whitespace-nowrap">DRIVE YO</span>
+              <span className="anim-ur-dream whitespace-nowrap">UR DREAM</span>
             </h1>
           </div>
         </div>
